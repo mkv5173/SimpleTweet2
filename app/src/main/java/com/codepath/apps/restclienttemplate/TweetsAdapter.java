@@ -20,6 +20,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
     Context context;
     List<Tweet> tweets;
 
+
     //Pass in the context and list of tweets (this is through constructor so at the top)
     //generate constructor
     public TweetsAdapter(Context context, List<Tweet> tweets) {
@@ -42,6 +43,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         Tweet tweet = tweets.get(position);
         //Bind the tweet with the view holder, the one passed in
         holder.bind(tweet);   //complaint and so u create method bind pops up at the very bottom
+        //holder.tvStamp.setText(tweet.getFormattedTimestamp());
     }
 
     @Override
@@ -68,6 +70,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         ImageView ivProfileImage;
         TextView tvBody;
         TextView tvScreenName;
+        TextView tvStamp;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -75,6 +78,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
             tvBody = itemView.findViewById(R.id.tvBody);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
+            tvStamp = itemView.findViewById(R.id.tvStamp);
 
         }
 
@@ -84,6 +88,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             //tvBody is body of tweet so on forth
             //laod in image based on image url for the user done through glide import it when u get complaint
             Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
+            tvStamp.setText(tweet.getFormattedTimestamp());
         } //can use adapter now in Timeline Activity which is basically main activity file but named itmeline bc it is twitter
     }
 
